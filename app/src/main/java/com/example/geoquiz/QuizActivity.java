@@ -20,11 +20,17 @@ public class QuizActivity extends AppCompatActivity {
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            // Does nothing yet, but soon!
+                // Does nothing yet, but soon!
             }
         });
 
         mFalseButton = (Button) findViewById(R.id.false_button);
+        mFalseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Does nothing yet, but soon!
+            }
+        });
 
     }
 }

@@ -13,9 +13,11 @@ public class QuizActivity extends AppCompatActivity {
     private Button mTrueButton;
     private Button mFalseButton;
     private Button mNextButton;
+
+    private Button mPreviousButton;
     private TextView mQuestionTextView;
 
-    private Question[] mQuestionBank = new Question[] {
+    private Question[] mQuestionBank = new Question[]{
             new Question(R.string.question_australia, true),
             new Question(R.string.question_oceans, true),
             new Question(R.string.question_mideast, false),
@@ -46,7 +48,7 @@ public class QuizActivity extends AppCompatActivity {
         mFalseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            checkAnswer(false);
+                checkAnswer(false);
 
             }
         });
@@ -60,11 +62,31 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
         updateQuestion();
+
+
+        mPreviousButton = (Button)
+
+                findViewById(R.id.previous_button);
+
+        mPreviousButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (mCurrentIndex > 0) {
+                    mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
+                }
+
+                updateQuestion();
+            }
+        });
+
+        updateQuestion();
+
     }
+
     private void updateQuestion() {
         int question = mQuestionBank[mCurrentIndex].getTextResId();
         mQuestionTextView.setText(question);
     }
+
 
     private void checkAnswer(boolean userPressedTrue) {
         boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
@@ -78,3 +100,4 @@ public class QuizActivity extends AppCompatActivity {
                 .show();
     }
 }
+
